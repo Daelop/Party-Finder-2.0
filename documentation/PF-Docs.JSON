@@ -1,0 +1,657 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "Party Finder API",
+      "description": "This API is designed to for the Party Finder web app, intended to facilitate online gaming events",
+      "license": {
+        "name": "Daelop",
+        "url": ""
+      }
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Party Finder",
+        "description": "API for handling user and event data for the Party Finder web app"
+      }
+    ],
+    "paths": {
+        "/auth/discord/redirect": {
+            "get": {
+                "description": "Processes the code from the Discord OAuth2 redirect, and creates a cookie with the auth token",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "The code returned from the Discord OAuth2 redirect",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token cookie created successfully. Redirect to the Party Finder home page"
+                    }
+                }
+            }
+        },
+        "/auth/discord/user": {
+            "get": {
+                "description": "Uses the token cookie to get the user's Discord user data",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "cookie",
+                        "description": "The token cookie",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User data retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/auth/check/event/:id": {
+            "get": {
+                "description": "Compares the user's Discord ID to the event's creator ID to determine if the user is the creator of the event",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "cookie",
+                        "description": "The token cookie",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "eventID",
+                        "in": "query",
+                        "description": "The ID of the event",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User is the creator of the event"
+                    }
+                }
+            }
+        },
+        "/auth/check/profile/:id": {
+            "get": {
+                "description": "Compares the user's Discord ID to the profile's user ID to determine if the user is the owner of the profile",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "cookie",
+                        "description": "The token cookie",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "profileID",
+                        "in": "query",
+                        "description": "The ID of the profile",
+                        "required": true,
+                        "type": "string"
+                    }
+                
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/events": {
+            "get": {
+                "description": "Gets all events from the database",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Events retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "description": "Creates a new event in the database",
+                "parameters": [
+                    {
+                        "name": "event",
+                        "in": "body",
+                        "description": "The new event",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "date": {
+                                    "type": "string"
+                                },
+                                "time": {
+                                    "type": "string"
+                                },
+                                "game": {
+                                    "type": "string"
+                                },
+                                "platform": {
+                                    "type": "string"
+                                },
+                                "maxPlayers": {
+                                    "type": "number"
+                                },
+                                "currentPlayers": {
+                                    "type": "number"
+                                },
+                                "creatorID": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event created successfully"
+                    }
+                }
+            }
+        },
+        "/events/:id": {
+            "get": {
+                "description": "Gets an event from the database by its ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the event",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event retrieved successfully"
+                    }
+                }
+            },
+            "put": {
+                "description": "Updates an event in the database",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the event",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "event",
+                        "in": "body",
+                        "description": "The updated event",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "date": {
+                                    "type": "string"
+                                },
+                                "time": {
+                                    "type": "string"
+                                },
+                                "game": {
+                                    "type": "string"
+                                },
+                                "platform": {
+                                    "type": "string"
+                                },
+                                "maxPlayers": {
+                                    "type": "number"
+                                },
+                                "currentPlayers": {
+                                    "type": "number"
+                                },
+                                "creatorID": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event Updated Successfully"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Deletes an event from the database",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the event",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event deleted successfully"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "description": "Gets a user from the database by their Discord ID. Creates a new user if the user does not exist",
+                "parameters": [
+                    {
+                        "name":"username",
+                        "in":"body",
+                        "description":"The username of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"discordID",
+                        "in":"body",
+                        "description":"The Discord ID of the user",
+                        "required":true,
+                        "type":"string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User retrieved/created successfully"
+                    }
+                }
+            }
+        },
+        "/users/:id": {
+            "get": {
+                "description": "Gets a user from the database by their ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User retrieved successfully"
+                    }
+                }
+            },
+            "put": {
+                "description": "Updates a user in the database",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name":"username",
+                        "in":"body",
+                        "description":"The username of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"discordID",
+                        "in":"body",
+                        "description":"The Discord ID of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"bio",
+                        "in":"body",
+                        "description":"The bio of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"pic",
+                        "in":"body",
+                        "description":"The profile picture of the user",
+                        "required":true,
+                        "type":"string",
+                        "format":"url",
+                        "default":"./images/user-default.png"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully"
+                    }
+                }
+            }
+        },
+        "/eventusers/create": {
+            "post": {
+                "description": "Creates a new event user in the database",
+                "parameters": [
+                    {
+                        "name":"eventID",
+                        "in":"body",
+                        "description":"The ID of the event",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"userID",
+                        "in":"body",
+                        "description":"The ID of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"username",
+                        "in":"body",
+                        "description":"The username of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"ign",
+                        "in":"body",
+                        "description":"The in-game name of the user",
+                        "required":false,
+                        "type":"string"
+                    },
+                    {
+                        "name":"server",
+                        "in":"body",
+                        "description":"The server of the user",
+                        "required":false,
+                        "type":"string"
+                    },
+                    {
+                        "name":"tos",
+                        "in":"body",
+                        "description":"The terms of service agreement of the user",
+                        "required":false,
+                        "type":"boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event user created successfully"
+                    }
+                }
+            }
+        },
+        "/eventusers/event/:id": {
+            "get": {
+                "description": "Gets an event user from the database by the event ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the event",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event user retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/eventusers/user/:id": {
+            "get": {
+                "description": "Gets an event user from the database by the user ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event user retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/eventusers/:id": {
+            "get": {
+                "description": "Gets an event user from the database by its ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the event user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event user retrieved successfully"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Deletes an event user from the database",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the event user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event user deleted successfully"
+                    }
+                }
+            },
+            "put": {
+                "description": "Updates an event user in the database",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the event user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name":"eventID",
+                        "in":"body",
+                        "description":"The ID of the event",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"userID",
+                        "in":"body",
+                        "description":"The ID of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"username",
+                        "in":"body",
+                        "description":"The username of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"ign",
+                        "in":"body",
+                        "description":"The in-game name of the user",
+                        "required":false,
+                        "type":"string"
+                    },
+                    {
+                        "name":"server",
+                        "in":"body",
+                        "description":"The server of the user",
+                        "required":false,
+                        "type":"string"
+                    },
+                    {
+                        "name":"tos",
+                        "in":"body",
+                        "description":"The terms of service agreement of the user",
+                        "required":false,
+                        "type":"boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event user updated successfully"
+                    }
+                }
+            }
+        },
+        "/applications/create": {
+            "post": {
+                "description": "Creates a new application in the database",
+                "parameters": [
+                    {
+                        "name":"eventID",
+                        "in":"body",
+                        "description":"The ID of the event",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"userID",
+                        "in":"body",
+                        "description":"The ID of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"username",
+                        "in":"body",
+                        "description":"The username of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"ign",
+                        "in":"body",
+                        "description":"The in-game name of the user",
+                        "required":false,
+                        "type":"string"
+                    },
+                    {
+                        "name":"server",
+                        "in":"body",
+                        "description":"The server of the user",
+                        "required":false,
+                        "type":"string"
+                    },
+                    {
+                        "name":"tos",
+                        "in":"body",
+                        "description":"The terms of service agreement of the user",
+                        "required":false,
+                        "type":"boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/applications/event/:id": {
+            "get": {
+                "description": "Gets all applications from the database by the event ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the event",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Applications retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/applications/user/:id": {
+            "get": {
+                "description": "Gets all applications from the database by the user ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Applications retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/applications/delete/:id": {
+            "delete": {
+                "description": "Deletes an application from the database",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the application",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Application deleted successfully"
+                    }
+                }
+            }
+        }
+    },
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"]
+   }
+   
