@@ -1,7 +1,13 @@
 # Changelog for
 # Party Finder
 ### Created 1/04/2024
-### Updated 1/04/2024
+### Updated 5/04/2024
+
+## V0.2.3 (5/04/2024)
+### General
+- Completed references document.
+- Annotated the design mock-up.
+- Completed basic documentation other than testing.
 
 ## V0.2.2 (5/04/2024)
 ### General
