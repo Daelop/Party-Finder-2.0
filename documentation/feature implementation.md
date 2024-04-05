@@ -36,6 +36,10 @@
     4. [Event Posts](#2-4)
     5. [Additional User Classes](#2-5)
     6. [Further Event Customization](#2-6)
+        1. [Header Images](#2-6-1)
+        2. [Colors](#2-6-2)
+    7. [Event Sorting and Filtering](#2-7)
+    8. [Social Media Links](#2-8)
 
 ## Section 0: References <a id = "0"></a>
 
@@ -181,10 +185,31 @@ In this example, 'judge', 'admin' and 'moderator' define the names of the user c
 
 ### Section 2.6: Further Event Customization <a id="2-6"> </a>
 
-#### Section 2.6.1: Header images
+#### Section 2.6.1: Header Images <a id="2-6-1"> </a>
 
 Header images will be implemented using a storage bucket for user uploaded images. The event object will contain a reference to the image in the storage bucket that will be used as the source for a Next.js ```<Image>``` tag.
 
-#### Section 2.6.2: Colors
+#### Section 2.6.2: Colors <a id="2-6-2"> </a>
 
 Users will be able to change the color scheme of their event listing and event page. This will be implemented by including color pickers in the display settings section of event settings. The event listing and event page will then have a style applied to them based on the display settings.
+
+### Section 2.7: Event Sorting and Filtering <a id="2-7"> </a>
+
+Event filtering will be implemented by adding a 'tags' key to the event object model. The filter component will query the database and search for all events with a specific tag. Events will also be able to be filtered by other keys, such as 'game' or 'date'. Event sorting will be implemented by manipulating the events array to order events by various parameters.
+
+### Section 2.8: Social Media Links <a id="2-8"> </a>
+
+Social media links will be implemented by adding a new 'socials' key to the event object. The value of the socials key will be an array of objects. This is an example of the structure of the socials array and it's nested objects.
+```
+socials: [
+    {
+    name:"discord",
+    href: "discord.gg/exampleserver"
+    icon: null
+    },
+    {
+    name: "Our Youtube Channel",
+    href: "https://www.youtube.com/channel/examplechannel"
+    }
+]
+```

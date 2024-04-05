@@ -112,7 +112,9 @@ Of course, these features are just the bare minimum required for Party Finder to
 
 - Further event customization; the ability for event organizers to customize their event listing with images, colors, social media links, etc.
 
+- Event sorting and filtering; the ability to sort events and find events with specific attributes.
 
+- Social media links; the optional listing of social media links on an event page.
 
 
 
