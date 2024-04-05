@@ -50,6 +50,7 @@ The plans for Party Finder's UI design can be found in a figma document.
 ### Testing
 
 The testing document outlines the details and results of QA tests run on Party Finder.
+NOTE: This document is currently a work in progress.
 
 - [Link](/documentation/testing.md)
 
