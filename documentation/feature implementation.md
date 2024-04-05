@@ -136,8 +136,55 @@ Compatibility with other streaming services will be an ongoing project. When/if 
 
 ### Section 2.4: Event Posts <a id="2-4"> </a>
 
+Event posts will be created using a form handled by TanStack Form. This form will have multiple optional fields to cater to various different types of posts. On submission, the form data will be passed to the database through a POST request to a new PfApi route named /posts.
 
 ### Section 2.5: Additional User Classes <a id="2-5"> </a>
 
+Additional classes will be implemented by adding a new key in the event object. This is an example of what that key could look like:
+
+```
+perms:{
+    judge:{
+        scope:{
+            editEventInfo:false,
+            editEventTime:false,
+            manageApplications:false,
+            manageContestants:false,
+            judgeVoting:true
+        }
+        users:["user3", "user4", "user5"]
+    }
+     admin:{
+        scope:{
+            editEventInfo:true,
+            editEventTime:true,
+            manageApplications:true,
+            manageContestants:true,
+            judgeVoting:true
+        }
+        users:["user1", "user2", "user3"]
+    },
+     moderator:{
+        scope:{
+            editEventInfo:false,
+            editEventTime:false,
+            manageApplications:true,
+            manageContestants:true,
+            judgeVoting:false
+        }
+        users:["user7", "user8", "user9"]
+    }
+
+}
+```
+In this example, 'judge', 'admin' and 'moderator' define the names of the user classes. Within the nested object, 'scope' defines the permissions of the class and the user array defines the users with the class.
 
 ### Section 2.6: Further Event Customization <a id="2-6"> </a>
+
+#### Section 2.6.1: Header images
+
+Header images will be implemented using a storage bucket for user uploaded images. The event object will contain a reference to the image in the storage bucket that will be used as the source for a Next.js ```<Image>``` tag.
+
+#### Section 2.6.2: Colors
+
+Users will be able to change the color scheme of their event listing and event page. This will be implemented by including color pickers in the display settings section of event settings. The event listing and event page will then have a style applied to them based on the display settings.
