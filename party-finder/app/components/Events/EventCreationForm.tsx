@@ -75,7 +75,7 @@ useEffect(() => {
     }
 }, [loading, loggedIn, discordUser, user])
 return(
-    <Grid marginTop={2} container direction="column" spacing={2} display="flex" justifyContent="center" alignItems="center">
+    <Grid className="pf-form" marginTop={2} container direction="column" spacing={2} display="flex" justifyContent="center" alignItems="center">
     
     <Grid item xs={12}>
         <h1 className="text-color-1">Create an Event</h1>

@@ -59,7 +59,7 @@ if (loading || loading2){
     return <div>Loading...</div>
 }
 return(
-    <Grid container spacing={2} display="flex" justifyContent="center" alignItems="center">
+    <Grid className="pf-form" container spacing={2} display="flex" justifyContent="center" alignItems="center">
         <Grid item xs={12}>
             <h1 className='text-color-1'>Application for {eventName}</h1>
         </Grid>

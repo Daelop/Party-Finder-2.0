@@ -55,7 +55,7 @@ export default function SettingsForm() {
     return <div>Loading...</div>;
   }
   return (
-    <div>
+    <div className="pf-form">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -63,7 +63,7 @@ export default function SettingsForm() {
           void form.handleSubmit();
         }}
       >
-        <Accordion>
+        <Accordion >
           <AccordionSummary>Main Settings</AccordionSummary>
           <AccordionDetails>
             <form.Field
@@ -74,7 +74,7 @@ export default function SettingsForm() {
                 id="standard-basic"
                 name="name"
                 label="Event Name"
-                variant="standard"
+                variant="outlined"
                 value={state.value||""}
                 onChange={(e) => handleChange(e.target.value)}
                 onBlur={handleBlur}
@@ -89,7 +89,7 @@ export default function SettingsForm() {
                 id="standard-basic"
                 name="description"
                 label="Description"
-                variant="standard"
+                variant="outlined"
                 value={state.value||""}
                 onChange={(e) => handleChange(e.target.value)}
                 onBlur={handleBlur}
@@ -104,7 +104,7 @@ export default function SettingsForm() {
                 id="standard-basic"
                 name="game"
                 label="Game"
-                variant="standard"
+                variant="outlined"
                 value={state.value||""}
                 onChange={(e) => handleChange(e.target.value)}
                 onBlur={handleBlur}
@@ -119,7 +119,7 @@ export default function SettingsForm() {
                     id="standard-basic"
                     name="loc"
                     label="Location"
-                    variant="standard"
+                    variant="outlined"
                     value={state.value||""}
                     onChange={(e) => handleChange(e.target.value)}
                     onBlur={handleBlur}
