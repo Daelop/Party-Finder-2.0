@@ -20,11 +20,11 @@ if (loading){
     return <div>Loading...</div>
 }
 return(
-<Grid container spacing={2} display="flex" justifyContent="center" alignItems="center">
+<Grid container spacing={2} display="flex" justifyContent="center" alignItems="center" >
     <Grid item xs={9}>
         {(participants.length === 0 || participants===null || participants === undefined)&& <div>No participants yet</div>}
         {participants.length > 0 && participants !== undefined && participants!==null && participants.map((participant) => (
-            <Card key={participant._id}>
+            <Card key={participant._id} sx={{maxWidth:"30%"}}>
                 <CardContent>
                     <h2>IGN: <Link href={
                         "/user/" + participant.user

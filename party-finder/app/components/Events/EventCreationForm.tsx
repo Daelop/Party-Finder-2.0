@@ -7,7 +7,7 @@ import { TextField,Checkbox, FormControlLabel } from "@mui/material";
 import { Grid } from "@mui/material";
 import NotLoggedIn from "../notLoggedIn";
 import { useRouter } from "next/navigation";
-
+import Box from "@mui/material/Box";
 export default function EventCreationForm(){
     const [user, discordUser, loggedIn, loading] = useContext(UserContext);
     const router = useRouter();
@@ -76,9 +76,11 @@ useEffect(() => {
 }, [loading, loggedIn, discordUser, user])
 return(
     <Grid className="pf-form" marginTop={2} container direction="column" spacing={2} display="flex" justifyContent="center" alignItems="center">
-    
+ 
     <Grid item xs={12}>
+    <Box mb={2}>
         <h1 className="text-color-1">Create an Event</h1>
+        </Box>
         </Grid>   
         <form 
     onSubmit={(e) => {
@@ -87,6 +89,7 @@ return(
         void form.handleSubmit();
     }}>
     <Grid item xs={12}>
+    <Box mb={2}>
  
     <form.Field
     name="name"
@@ -95,13 +98,16 @@ return(
         id='standard-basic'
         name="name"
         label="Event Name"
+        variant="outlined"
         value={state.value || ""}
         onChange={(e) => handleChange(e.target.value)}
         onBlur={handleBlur}
         />
     }}/>
+    </Box>
     </Grid>
     <Grid item xs={12}>
+    <Box mb={2}>
     <form.Field
     name="description"
     children={({state, handleChange, handleBlur}) => {
@@ -109,13 +115,16 @@ return(
         id='standard-basic'
         name="description"
         label="Description"
+        variant="outlined"
         value={state.value || ""}
         onChange={(e) => handleChange(e.target.value)}
         onBlur={handleBlur}
         />
     }}/>
+    </Box>
     </Grid>
     <Grid item xs={12}>
+    <Box mb={2}>
     <form.Field
     name="game"
     children={({state, handleChange, handleBlur}) => {
@@ -123,18 +132,22 @@ return(
         id='standard-basic'
         name="game"
         label="Game"
+        variant="outlined"
         value={state.value || ""}
         onChange={(e) => handleChange(e.target.value)}
         onBlur={handleBlur}
         />
     }}/>
+    </Box>
     </Grid>
     <Grid item xs={12}>
+    <Box mb={2}>
     <form.Field
     name="loc"
     children={({state, handleChange, handleBlur}) => {
         return <TextField
         id='standard-basic'
+        variant="outlined"
         name="loc"
         label="Location"
         value={state.value || ""}
@@ -142,8 +155,10 @@ return(
         onBlur={handleBlur}
         />
     }}/>
+    </Box>
     </Grid>
     <Grid item xs={12}>
+    <Box mb={2} marginLeft={1}>
     <form.Field
     name="time"
     children={({state, handleChange, handleBlur}) => {
@@ -151,8 +166,10 @@ return(
         label="Time"
         control={<input type="time" name="time" value={state.value || ""} onChange={(e) => handleChange(e.target.value)} onBlur={handleBlur}/>}/>
     }}/>
+    </Box>
     </Grid>
     <Grid item xs={12}>
+    <Box mb={2} marginLeft={1}>
     <form.Field
     name="date"
     children={({state, handleChange, handleBlur}) => {
@@ -160,8 +177,11 @@ return(
         label="Date"
         control={<input type="date" name="date" value={state.value || ""} onChange={(e) => handleChange(e.target.value)} onBlur={handleBlur}/>}/>
     }}/>
+    </Box>
     </Grid>
+    
     <Grid item xs={12}>
+    <Box mb={2}>
     <form.Field
     name="open"
     children={({state, handleChange, handleBlur}) => {
@@ -169,6 +189,7 @@ return(
         label="Open"
         control={<Checkbox checked={state.value||false} onChange={(e) => handleChange(e.target.checked)} onBlur={handleBlur}/>}/>
     }}/>
+    </Box>
     </Grid>
     <Grid item xs={12}>
         <button type="submit">Submit</button>

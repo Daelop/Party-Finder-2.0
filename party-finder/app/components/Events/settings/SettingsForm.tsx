@@ -9,6 +9,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { TextField,Checkbox, FormControlLabel } from "@mui/material";
 import Participants from "../Participants";
+import { Grid } from "@mui/material";
 export default function SettingsForm() {
   const { id } = useParams();
   const [eventValues, setEventValues] = useState<PfEvent>({} as PfEvent);
@@ -56,6 +57,7 @@ export default function SettingsForm() {
   }
   return (
     <div className="pf-form">
+      <h1 className="text-color-1">Event Settings</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -63,9 +65,11 @@ export default function SettingsForm() {
           void form.handleSubmit();
         }}
       >
-        <Accordion >
+        <Accordion>
           <AccordionSummary>Main Settings</AccordionSummary>
           <AccordionDetails>
+            <Grid container spacing={2}>
+              <Grid item xs={2}>
             <form.Field
               name="name"
               // eslint-disable-next-line react/no-children-prop
@@ -74,6 +78,7 @@ export default function SettingsForm() {
                 id="standard-basic"
                 name="name"
                 label="Event Name"
+                
                 variant="outlined"
                 value={state.value||""}
                 onChange={(e) => handleChange(e.target.value)}
@@ -81,6 +86,8 @@ export default function SettingsForm() {
                 placeholder= {eventValues.name}
                 />)}}
             />
+            </Grid>
+            <Grid item xs={2}>
             <form.Field
               name="description"
               // eslint-disable-next-line react/no-children-prop
@@ -90,12 +97,15 @@ export default function SettingsForm() {
                 name="description"
                 label="Description"
                 variant="outlined"
+                
                 value={state.value||""}
                 onChange={(e) => handleChange(e.target.value)}
                 onBlur={handleBlur}
                 placeholder= {eventValues.description}
                 />)}} 
             />
+            </Grid>
+            <Grid item xs={2}>
             <form.Field
               name="game"
               // eslint-disable-next-line react/no-children-prop
@@ -105,12 +115,14 @@ export default function SettingsForm() {
                 name="game"
                 label="Game"
                 variant="outlined"
+                
                 value={state.value||""}
                 onChange={(e) => handleChange(e.target.value)}
                 onBlur={handleBlur}
                 placeholder= {eventValues.game}
                 />)}}
-            />
+            /></Grid>
+            <Grid item xs={2}>
             <form.Field
                 name="loc"
                 // eslint-disable-next-line react/no-children-prop
@@ -119,13 +131,15 @@ export default function SettingsForm() {
                     id="standard-basic"
                     name="loc"
                     label="Location"
+                    
                     variant="outlined"
                     value={state.value||""}
                     onChange={(e) => handleChange(e.target.value)}
                     onBlur={handleBlur}
                     placeholder= {eventValues.loc}
                     />)}}
-            />
+            /></Grid>
+            <Grid item xs={2}>
             <form.Field
                 name="time"
                 // eslint-disable-next-line react/no-children-prop
@@ -135,13 +149,15 @@ export default function SettingsForm() {
                         type="time"
                         id="time"
                         name="time"
+                        
                         value={state.value||""}
                         onChange={(e) => handleChange(e.target.value)}
                         onBlur={handleBlur}
                         placeholder= {eventValues.time}
                         />} label="Time"/>
                     )}}
-            />
+            /></Grid>
+            <Grid item xs={2}>
             <form.Field
                 name="date"
                 // eslint-disable-next-line react/no-children-prop
@@ -159,7 +175,8 @@ export default function SettingsForm() {
                         />
                     } />
                     )}}
-            />
+            /></Grid>
+            <Grid item xs={2}>
             <form.Field
             name="open"
             // eslint-disable-next-line react/no-children-prop
@@ -173,12 +190,15 @@ export default function SettingsForm() {
                     onBlur={handleBlur}
                     />} label="Require an application?"/>
                 )}}
-                />
+                /></Grid>
+                </Grid>
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary>Application Settings</AccordionSummary>
           <AccordionDetails>
+          <Grid container spacing={2}>
+              <Grid item xs={2}>
             <form.Field
                 name="applicationSettings.reqIGN"
                 // eslint-disable-next-line react/no-children-prop
@@ -193,6 +213,8 @@ export default function SettingsForm() {
                         />} label="Require In-Game Name?"/>
                     )}}
                 />
+            </Grid>
+            <Grid item xs={2}>
             <form.Field
                 name="applicationSettings.reqSer"
                 // eslint-disable-next-line react/no-children-prop
@@ -207,6 +229,8 @@ export default function SettingsForm() {
                         />} label="Require Server?"/>
                     )}}
                 />
+                </Grid>
+            <Grid item xs={2}>
             <form.Field
                 name="applicationSettings.reqTOS"
                 // eslint-disable-next-line react/no-children-prop
@@ -220,7 +244,8 @@ export default function SettingsForm() {
                         onBlur={handleBlur}
                         />} label="Require Terms of Service?"/>
                     )}}
-                />
+                /></Grid>
+                <Grid item xs={2}>
             <form.Field
                 name="applicationSettings.tos"
                 // eslint-disable-next-line react/no-children-prop
@@ -230,19 +255,23 @@ export default function SettingsForm() {
                     id="standard-basic"
                     name="tos"
                     label="Terms of Service"
-                    variant="standard"
+                    
+                    variant="outlined"
                     value={state.value||""}
                     onChange={(e) => handleChange(e.target.value)}
                     onBlur={handleBlur}
                     placeholder= {eventValues.applicationSettings.tos}
                     />
                     )}}
-                />
+                /></Grid>
+                </Grid>
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary>Participant Settings</AccordionSummary>
           <AccordionDetails>
+            <Grid container spacing={2}>
+            <Grid item xs={2}>
             <form.Field
                 name="participantSettings.allowTitle"
                 // eslint-disable-next-line react/no-children-prop
@@ -257,6 +286,8 @@ export default function SettingsForm() {
                         />} label="Allow Title?"/>
                     )}}
                 />
+                </Grid>
+            <Grid item xs={2}>
             <form.Field
                 name="participantSettings.reqTitle"
                 // eslint-disable-next-line react/no-children-prop
@@ -270,7 +301,8 @@ export default function SettingsForm() {
                         onBlur={handleBlur}
                         />} label="Require Title?"/>
                     )}}
-                />
+                /></Grid>
+                <Grid item xs={2}>
             <form.Field
                 name="participantSettings.titleLabel"
                 // eslint-disable-next-line react/no-children-prop
@@ -280,14 +312,16 @@ export default function SettingsForm() {
                     id="standard-basic"
                     name="titleLabel"
                     label="Title Label"
-                    variant="standard"
+                    
+                    variant="outlined"
                     value={state.value||""}
                     onChange={(e) => handleChange(e.target.value)}
                     onBlur={handleBlur}
                     placeholder= {eventValues.participantSettings.titleLabel}
                     />
                     )}}
-                />
+                /></Grid>
+                <Grid item xs={2}>
             <form.Field
                 name="participantSettings.allowDesc"
                 // eslint-disable-next-line react/no-children-prop
@@ -301,7 +335,8 @@ export default function SettingsForm() {
                         onBlur={handleBlur}
                         />} label="Allow Description?"/>
                     )}}
-                />
+                /></Grid>
+                <Grid item xs={2}>
             <form.Field
                 name="participantSettings.reqDesc"
                 // eslint-disable-next-line react/no-children-prop
@@ -315,7 +350,8 @@ export default function SettingsForm() {
                         onBlur={handleBlur}
                         />} label="Require Description?"/>
                     )}}
-                />
+                /></Grid>
+                <Grid item xs={2}>
                 {/* //add descLength */}
             <form.Field
                 name="participantSettings.allowImage"
@@ -330,7 +366,8 @@ export default function SettingsForm() {
                         onBlur={handleBlur}
                         />} label="Allow Image?"/>
                     )}}
-                />
+                /></Grid>
+                <Grid item xs={2}>
             <form.Field
                 name="participantSettings.reqImg"
                 // eslint-disable-next-line react/no-children-prop
@@ -344,7 +381,8 @@ export default function SettingsForm() {
                         onBlur={handleBlur}
                         />} label="Require Image?"/>
                     )}}
-                />
+                /></Grid>
+                <Grid item xs={2}>
             <form.Field
                 name="participantSettings.imgLabel"
                 // eslint-disable-next-line react/no-children-prop
@@ -354,14 +392,16 @@ export default function SettingsForm() {
                     id="standard-basic"
                     name="imgLabel"
                     label="Image Label"
-                    variant="standard"
+                    
+                    variant="outlined"
                     value={state.value||""}
                     onChange={(e) => handleChange(e.target.value)}
                     onBlur={handleBlur}
                     placeholder= {eventValues.participantSettings.imgLabel}
                     />
                     )}}
-                />
+                /></Grid>
+                <Grid item xs={2}>
             <form.Field
                 name="participantSettings.allowAdminContact"
                 // eslint-disable-next-line react/no-children-prop
@@ -375,7 +415,8 @@ export default function SettingsForm() {
                         onBlur={handleBlur}
                         />} label="Allow Admin Contact?"/>
                     )}}
-                />
+                /></Grid>
+                </Grid>
           </AccordionDetails>
         </Accordion>
         <Accordion>

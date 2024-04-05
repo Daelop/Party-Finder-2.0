@@ -118,21 +118,12 @@ text-align: center;
   outline-color: #6B5CA5;
 }
 .nav-button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0,0,0,0.1);
-  font-size: 20px;
-  border: 2px solid rgba(0,0,0,0.5);
-  padding: auto;
-  text-align: center;
-  height: 100px;
-  border-radius: 5px;
-  color: #6B5CA5;
+  color: #72195A;
+  font-size: 120%;
+  font-weight: bold;
 }
 .nav-button:hover{
-  background-color: rgba(0,0,0,0.2);
-  color: #72195A;
+  color: #6B5CA5;
 }
 .auto-margin{
   margin: auto;

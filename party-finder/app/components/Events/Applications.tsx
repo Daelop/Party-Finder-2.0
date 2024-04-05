@@ -40,10 +40,10 @@ if (loading){
 }
 return(
 <Grid container spacing={2} display="flex" justifyContent="center" alignItems="center">
-    <Grid item xs={9}>
+    <Grid item xs={9} >
         {(applications.length === 0 || applications===null || applications === undefined)&& <div>No applications yet</div>}
         {applications.length > 0 && applications !== undefined && applications!==null && applications.map((application) => (
-            <Card key={application._id}>
+            <Card key={application._id} sx={{maxWidth:"30%"}}>
                 <CardContent>
                     <h2>IGN: <Link href={
                         "/user/" + application.user

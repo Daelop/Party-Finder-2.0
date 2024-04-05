@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import ApplyButton from "./ApplyButton";
 import { Card, CardContent, CardHeader, Grid } from "@mui/material";
+import Box from "@mui/material/Box";
 
 interface ApplicationSettings {
     reqIGN: boolean;
@@ -58,6 +59,11 @@ export function Events() {
     }, []);
     return (
         <Grid marginTop={5} display="flex" justifyContent="center" alignItems="center" container spacing={2}>
+               <Grid item xs={12}>
+    <Box mb={2}>
+    <h1 className="text-color-1">Create an Event</h1>
+    </Box>
+    </Grid>
             {events.map((event) => (
                 <Grid item key={event._id} display="flex" justifyContent="center" alignItems="center" xs={5} >
                 <Card variant="outlined" sx={{maxWidth: 700, width:500, height:175, maxHeight:300}}className="event-container">

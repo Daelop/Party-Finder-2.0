@@ -16,14 +16,14 @@ export default function UserNav() {
         <Image src="/assets/user-default.png" alt="User Profile Image" width={60} height={60} />
         </Link>
         <Link href="/" >
-         <Button onClick={logout}>Logout</Button>
+         <Button className="nav-button" onClick={logout}>Logout</Button>
         </Link>
       </div>
     );
   } else {
     return (
       <div>
-        <Link href="https://discord.com/oauth2/authorize?client_id=1212963361063436319&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2Fdiscord%2Fredirect&scope=identify">
+        <Link className="nav-button" href="https://discord.com/oauth2/authorize?client_id=1212963361063436319&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2Fdiscord%2Fredirect&scope=identify">
           Login
         </Link>
       </div>

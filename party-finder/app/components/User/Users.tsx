@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { EventUser } from "../types/EventUserType";
 import UserEvents from "./UserEvents";
+import { Grid } from "@mui/material";
+import Box from "@mui/material/Box";
 interface User {
     id: string;
     discordId: string;
@@ -32,11 +34,27 @@ export default function Profile() {
         return <div>Loading...</div>;
     }
     return (
-        <div>
-            <h1 className="text-color-1">{profile?.username}</h1>
-            <Image src="/assets/user-default.png" alt="User Profile Image" width={200} height={200} />
-            <p>{profile?.bio}</p>
-            <UserEvents/>
-        </div>
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <Box display="flex" justifyContent="center" alignItems="center">
+                    <h1 className="text-color-1">{profile?.username}</h1>
+                </Box>
+            </Grid>
+            <Grid item xs={12}>
+                <Box display="flex" justifyContent="center" alignItems="center">
+                    <Image src="/assets/user-default.png" alt="User Profile Image" width={200} height={200} />
+                </Box>
+            </Grid>
+            <Grid item xs={12}>
+                <Box display="flex" justifyContent="center" alignItems="center">
+                    <p className="text-color-2">{profile?.bio}</p>
+                </Box>
+            </Grid>
+            <Grid item xs={12}>
+                <Box display="flex" justifyContent="center" alignItems="center">
+                    <UserEvents/>
+                </Box>
+            </Grid>
+        </Grid>
     );
 }

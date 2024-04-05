@@ -22,7 +22,7 @@ export default function UserEvents() {
     return(
         <Grid container spacing={2} display="flex" justifyContent="center" alignItems="center" sx={{width:'60%'}}>
             <Grid item xs={12}>
-            <h3>User&apos;s events: </h3>
+            <h3 className="text-color-1" style={{textAlign:"left"}}>User&apos;s events: </h3>
             </Grid>
             {(events.length === 0||events === null || events === undefined)&& <div>No events yet</div>}
             {events.length > 0 && events.map((event) => (
