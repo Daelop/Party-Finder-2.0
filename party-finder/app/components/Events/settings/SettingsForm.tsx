@@ -14,6 +14,7 @@ export default function SettingsForm() {
   const { id } = useParams();
   const [eventValues, setEventValues] = useState<PfEvent>({} as PfEvent);
   const [loading, setLoading] = useState(true);
+  //Fetches the event settings
   useEffect(() => {
     if (id) {
       fetch("http://localhost:8080/events/" + id, { credentials: "include" })
@@ -29,6 +30,7 @@ export default function SettingsForm() {
     }
   }, [id]);
 
+  //Initializes the form with the current event settings as the default values
   const form = useForm({
     defaultValues: eventValues,
     onSubmit: (values) => {
@@ -51,7 +53,7 @@ export default function SettingsForm() {
   });
  
 
-
+//Prevents the form from rendering before the event settings are loaded
   if (loading) {
     return <div>Loading...</div>;
   }

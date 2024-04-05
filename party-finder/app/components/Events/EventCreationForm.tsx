@@ -1,4 +1,5 @@
 /* eslint-disable react/no-children-prop */
+//A form for users to create events
 'use client'
 import { useForm } from "@tanstack/react-form";
 import { useContext, useEffect } from "react";
@@ -9,8 +10,10 @@ import NotLoggedIn from "../notLoggedIn";
 import { useRouter } from "next/navigation";
 import Box from "@mui/material/Box";
 export default function EventCreationForm(){
+    //Gets the user and discordUser values from the UserContext
     const [user, discordUser, loggedIn, loading] = useContext(UserContext);
     const router = useRouter();
+    //Initializes the form
     const form = useForm({
     defaultValues:{
         name: "",
@@ -41,6 +44,7 @@ export default function EventCreationForm(){
             pic: "/assets/PFLogo2.png"
         },
     },
+    //Submits the form to the database
     onSubmit: async (values) => {
         console.log(values);
         fetch("http://localhost:8080/events", {
@@ -62,6 +66,7 @@ export default function EventCreationForm(){
         })
     }
 });
+//Boots the user to the homepage if they are not logged in
 useEffect(() => {
     if(loading===false){
         if(loggedIn===false){
@@ -69,12 +74,14 @@ useEffect(() => {
         }
         
     }
+    //Sets the creator and creatorName values in the form once the user is loaded
     if(!loading && loggedIn){
         form.setFieldValue("creator", user._id)
         form.setFieldValue("creatorName", user.username)
     }
 }, [loading, loggedIn, discordUser, user])
 return(
+    //Renders the form
     <Grid className="pf-form" marginTop={2} container direction="column" spacing={2} display="flex" justifyContent="center" alignItems="center">
  
     <Grid item xs={12}>

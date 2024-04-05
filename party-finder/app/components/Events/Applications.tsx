@@ -5,11 +5,12 @@ import { Card, CardActions, CardContent, Grid } from "@mui/material";
 import PfButton from "../PfButton";
 import Link from "next/link";
 
-
+//display applications for an event
 export default function Applications(){
 const { id } = useParams();
 const [applications, setApplications] = useState<PfApplication[]>();
 const [loading, setLoading] = useState(true);
+//fetch all applications for an event
 useEffect(()=>
 {if (id){
     fetch("http://localhost:8080/applications/event/" + id)
@@ -20,8 +21,8 @@ useEffect(()=>
     });
 }
 },[id])
-//need to add body to below
 
+//accepts an application
 function acceptApplication(application: PfApplication){
     fetch("http://localhost:8080/applications/accept/" , {
         method: "POST",
@@ -35,13 +36,16 @@ function acceptApplication(application: PfApplication){
         console.log(data);
     });
 }
+//Prevents the page from rendering before the applications are loaded
 if (loading){
     return <div>Loading...</div>
 }
 return(
 <Grid container spacing={2} display="flex" justifyContent="center" alignItems="center">
     <Grid item xs={9} >
+        {/* handles case where no applications are present */}
         {(applications.length === 0 || applications===null || applications === undefined)&& <div>No applications yet</div>}
+        {/* maps through applications and displays them */}
         {applications.length > 0 && applications !== undefined && applications!==null && applications.map((application) => (
             <Card key={application._id} sx={{maxWidth:"30%"}}>
                 <CardContent>

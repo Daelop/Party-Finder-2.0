@@ -1,6 +1,6 @@
 'use client';
 import { createTheme } from "@mui/material";
-
+//sets the global theme for the app
 const GlobalTheme = createTheme({
     palette: {
         // primary: {

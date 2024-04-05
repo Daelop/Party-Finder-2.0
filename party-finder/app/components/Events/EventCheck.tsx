@@ -1,4 +1,6 @@
 'use client'
+
+//Deprecated code
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import EventForm from "./EventForm";

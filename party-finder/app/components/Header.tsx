@@ -7,7 +7,7 @@ import Image from "next/image";
 import UserNav from "./User/UserNav";
 export default function PfHeader() {
   const [user, discordUser] = useContext(UserContext);
-
+//Header for the website
   return (
     <AppBar
       position="sticky"

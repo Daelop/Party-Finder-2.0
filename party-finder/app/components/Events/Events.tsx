@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import ApplyButton from "./ApplyButton";
 import { Card, CardContent, CardHeader, Grid } from "@mui/material";
 import Box from "@mui/material/Box";
-
+//declares types for event. This now needs to be imported from the types file.
 interface ApplicationSettings {
     reqIGN: boolean;
     reqSer: boolean;
@@ -49,19 +49,21 @@ interface ApplicationSettings {
     displaySettings: DisplaySettings;
     timestamps: boolean;
   }
+  //displays all events
 export function Events() {
     const [events, setEvents] = useState<Event[]>([]);
-    
+    //fetches all events
     useEffect(() => {
         fetch("http://localhost:8080/events").then((res) => res.json()).then((data) => {
             setEvents(data);
         });
     }, []);
     return (
+        //maps through events and displays them
         <Grid marginTop={5} display="flex" justifyContent="center" alignItems="center" container spacing={2}>
                <Grid item xs={12}>
     <Box mb={2}>
-    <h1 className="text-color-1">Create an Event</h1>
+    <h1 className="text-color-1">Event Listings</h1>
     </Box>
     </Grid>
             {events.map((event) => (
@@ -95,15 +97,18 @@ export function Events() {
 export function Event() {
     const [event, setEvent] = useState<Event>();
     const { id } = useParams();
+    //fetches a single event
     useEffect(() => {
         fetch(`http://localhost:8080/events/${id}`).then((res) => res.json()).then((data) => {
             setEvent(data);
         });
     }, []);
+    //Prevents the page from rendering before the event is loaded
     if (!event) {
         return <div>Loading...</div>;
     }else{
         return (
+            //maps the event to a card
             <div>
                 <Grid  margin={20}container display="flex" justifyContent="center" alignItems="center" spacing={2}>
                    <Grid xs={5} >

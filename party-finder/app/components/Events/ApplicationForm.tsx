@@ -12,6 +12,8 @@ export default function ApplicationForm() {
     const [loading2, setLoading2] = useState(false)
     const [application, setApplication] = useState<ApplicationSettings>({} as ApplicationSettings)
     const [eventName, setEventName] = useState("")
+
+    //Fetches the event and application settings
     useEffect(() => {
         if (id){
             fetch("http://localhost:8080/events/" + id, {credentials: "include"})
@@ -24,6 +26,7 @@ export default function ApplicationForm() {
         }
 },[id])
 
+//Initializes the form
 const form = useForm({
     defaultValues: {
         user: "",
@@ -34,6 +37,7 @@ const form = useForm({
         tos: false,
         eventName: ""
     },
+    //Submits the form to the database
     onSubmit: async (values) => {
         console.log(values)
         fetch("http://localhost:8080/applications/create", {
@@ -49,16 +53,19 @@ const form = useForm({
         })
     }
 })
+//Sets the user and discordUser values in the form once they are loaded
 useEffect(() => {
  if (user && discordUser && eventName){
         form.setFieldValue("user", user._id)
         form.setFieldValue("username", discordUser.username)
         form.setFieldValue("eventName", eventName)
  }})
+ //Prevents to from rendering before the event and application settings are loaded.
 if (loading || loading2){
     return <div>Loading...</div>
 }
 return(
+    //Renders the form based on the application settings
     <Grid className="pf-form" container spacing={2} display="flex" justifyContent="center" alignItems="center">
         <Grid item xs={12}>
             <h1 className='text-color-1'>Application for {eventName}</h1>
