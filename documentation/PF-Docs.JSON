@@ -130,7 +130,13 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "title": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "creator": {
+                                    "type": "string"
+                                },
+                                "creatorName": {
                                     "type": "string"
                                 },
                                 "description": {
@@ -145,17 +151,71 @@
                                 "game": {
                                     "type": "string"
                                 },
-                                "platform": {
+                                "loc": {
                                     "type": "string"
                                 },
-                                "maxPlayers": {
-                                    "type": "number"
+                                "open": {
+                                    "type": "boolean"
                                 },
-                                "currentPlayers": {
-                                    "type": "number"
-                                },
-                                "creatorID": {
-                                    "type": "string"
+                                "ApplicationSettings": {
+                                    "type": "object",
+                                    "properties": {
+                                        "reqIGN": {
+                                            "type": "boolean"
+                                        },
+                                        "reqSer": {
+                                            "type": "boolean"
+                                        },
+                                        "reqTOS": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "ParticipantSettings":{
+                                        "type": "object",
+                                        "properties": {
+                                           "allowTitle": {
+                                               "type": "boolean"
+                                           },
+                                             "allowDesc": {
+                                                  "type": "boolean"
+                                             },
+                                             "reqTitle": {
+                                                 "type": "boolean"
+                                             },
+                                             "reqDesc": {
+                                                 "type": "boolean"
+                                             },
+                                             "descLength": {
+                                                 "type": "array, number, number"
+                                             },
+                                             "allowImage": {
+                                                 "type": "boolean"
+                                             },
+                                                "reqImg": {
+                                                    "type": "boolean"
+                                                },
+                                            "allowAdminContact": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "displaySettings":{
+                                            "type":"object",
+                                            "properties":{
+                                                "backgroundColor":{
+                                                    "type":"string"
+                                                },
+                                                "textColor":{
+                                                    "type":"string"
+                                                },
+                                                "textColor2":{
+                                                    "type":"string"
+                                                },
+                                                "pic":{
+                                                    "type":"string"
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -204,7 +264,13 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "title": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "creator": {
+                                    "type": "string"
+                                },
+                                "creatorName": {
                                     "type": "string"
                                 },
                                 "description": {
@@ -219,17 +285,71 @@
                                 "game": {
                                     "type": "string"
                                 },
-                                "platform": {
+                                "loc": {
                                     "type": "string"
                                 },
-                                "maxPlayers": {
-                                    "type": "number"
+                                "open": {
+                                    "type": "boolean"
                                 },
-                                "currentPlayers": {
-                                    "type": "number"
-                                },
-                                "creatorID": {
-                                    "type": "string"
+                                "ApplicationSettings": {
+                                    "type": "object",
+                                    "properties": {
+                                        "reqIGN": {
+                                            "type": "boolean"
+                                        },
+                                        "reqSer": {
+                                            "type": "boolean"
+                                        },
+                                        "reqTOS": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "ParticipantSettings":{
+                                        "type": "object",
+                                        "properties": {
+                                           "allowTitle": {
+                                               "type": "boolean"
+                                           },
+                                             "allowDesc": {
+                                                  "type": "boolean"
+                                             },
+                                             "reqTitle": {
+                                                 "type": "boolean"
+                                             },
+                                             "reqDesc": {
+                                                 "type": "boolean"
+                                             },
+                                             "descLength": {
+                                                 "type": "array, number, number"
+                                             },
+                                             "allowImage": {
+                                                 "type": "boolean"
+                                             },
+                                                "reqImg": {
+                                                    "type": "boolean"
+                                                },
+                                            "allowAdminContact": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "displaySettings":{
+                                            "type":"object",
+                                            "properties":{
+                                                "backgroundColor":{
+                                                    "type":"string"
+                                                },
+                                                "textColor":{
+                                                    "type":"string"
+                                                },
+                                                "textColor2":{
+                                                    "type":"string"
+                                                },
+                                                "pic":{
+                                                    "type":"string"
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -356,16 +476,23 @@
                 "description": "Creates a new event user in the database",
                 "parameters": [
                     {
-                        "name":"eventID",
+                        "name":"event",
                         "in":"body",
                         "description":"The ID of the event",
                         "required":true,
                         "type":"string"
                     },
                     {
-                        "name":"userID",
+                        "name":"user",
                         "in":"body",
                         "description":"The ID of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"eventName",
+                        "in":"body",
+                        "description":"The name of the event",
                         "required":true,
                         "type":"string"
                     },
@@ -489,14 +616,14 @@
                         "type": "string"
                     },
                     {
-                        "name":"eventID",
+                        "name":"event",
                         "in":"body",
                         "description":"The ID of the event",
                         "required":true,
                         "type":"string"
                     },
                     {
-                        "name":"userID",
+                        "name":"user",
                         "in":"body",
                         "description":"The ID of the user",
                         "required":true,
@@ -506,6 +633,13 @@
                         "name":"username",
                         "in":"body",
                         "description":"The username of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"eventName",
+                        "in":"body",
+                        "description":"The name of the event",
                         "required":true,
                         "type":"string"
                     },
@@ -543,14 +677,14 @@
                 "description": "Creates a new application in the database",
                 "parameters": [
                     {
-                        "name":"eventID",
+                        "name":"event",
                         "in":"body",
                         "description":"The ID of the event",
                         "required":true,
                         "type":"string"
                     },
                     {
-                        "name":"userID",
+                        "name":"user",
                         "in":"body",
                         "description":"The ID of the user",
                         "required":true,
@@ -560,6 +694,13 @@
                         "name":"username",
                         "in":"body",
                         "description":"The username of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"eventName",
+                        "in":"body",
+                        "description":"The name of the event",
                         "required":true,
                         "type":"string"
                     },
@@ -584,6 +725,7 @@
                         "required":false,
                         "type":"boolean"
                     }
+                    
                 ],
                 "responses": {
                     "200": {
@@ -645,6 +787,68 @@
                 "responses": {
                     "200": {
                         "description": "Application deleted successfully"
+                    }
+                }
+            }
+        },
+        "/applications/accept":{
+            "post": {
+                "description": "Accepts an application in the database, and creates an event user",
+                "parameters": [
+                    {
+                        "name":"event",
+                        "in":"body",
+                        "description":"The ID of the event",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"user",
+                        "in":"body",
+                        "description":"The ID of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"username",
+                        "in":"body",
+                        "description":"The username of the user",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"eventName",
+                        "in":"body",
+                        "description":"The name of the event",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"ign",
+                        "in":"body",
+                        "description":"The in-game name of the user",
+                        "required":false,
+                        "type":"string"
+                    },
+                    {
+                        "name":"server",
+                        "in":"body",
+                        "description":"The server of the user",
+                        "required":false,
+                        "type":"string"
+                    },
+                    {
+                        "name":"tos",
+                        "in":"body",
+                        "description":"The terms of service agreement of the user",
+                        "required":false,
+                        "type":"boolean"
+                    }
+                    
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
                     }
                 }
             }
